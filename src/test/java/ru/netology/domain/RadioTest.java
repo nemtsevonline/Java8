@@ -14,14 +14,14 @@ class RadioTest {
             value = {
                     "-1; 0",
                     "5; 5",
-                    "9; 9",
                     "0; 0",
+                    "9; 9",
                     "12; 0"
             }
             , delimiter = ';'
     )
     void setCurrentStationTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentStation(start);
         assertEquals(expected, radio.getCurrentStation());
     }
@@ -30,13 +30,13 @@ class RadioTest {
     @CsvSource(
             value = {
                     "-1; 0",
-                    "5; 5",
-                    "12; 0"
+                    "50; 50",
+                    "120; 0"
             }
             , delimiter = ';'
     )
     void setCurrentVolumeTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentVolume(start);
         assertEquals(expected, radio.getCurrentVolume());
     }
@@ -45,13 +45,13 @@ class RadioTest {
     @CsvSource(
             value = {
                     "0; 1",
-                    "8; 9",
+                    "7; 8",
                     "9; 0"
             }
             , delimiter = ';'
     )
     void pressNextStationTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentStation(start);
 
         radio.pressNextStation();
@@ -61,14 +61,14 @@ class RadioTest {
     @ParameterizedTest
     @CsvSource(
             value = {
-                    "5; 4",
+                    "4; 3",
                     "1; 0",
                     "0; 9"
             }
             , delimiter = ';'
     )
     void pressPrevStationTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentStation(start);
 
         radio.pressPrevStation();
@@ -79,13 +79,13 @@ class RadioTest {
     @CsvSource(
             value = {
                     "0; 1",
-                    "9; 10",
-                    "10; 10"
+                    "90; 91",
+                    "100; 100"
             }
             , delimiter = ';'
     )
     void pressPlusVolumeTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentVolume(start);
 
         radio.pressPlusVolume();
@@ -95,14 +95,14 @@ class RadioTest {
     @ParameterizedTest
     @CsvSource(
             value = {
-                    "5; 4",
+                    "50; 49",
                     "1; 0",
                     "0; 0"
             }
             , delimiter = ';'
     )
     void pressMinusVolumeTest(int start, int expected) {
-        Radio radio=new Radio();
+        Radio radio=new Radio(100);
         radio.setCurrentVolume(start);
 
         radio.pressMinusVolume();
